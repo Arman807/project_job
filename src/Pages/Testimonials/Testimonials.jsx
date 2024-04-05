@@ -12,7 +12,11 @@ const Testimonials = () => {
   useState(() => {
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
-      .then((data) => setReview(data));
+      .then((data) => {
+        console.log(data)
+        setReview(data)
+        
+      });
   }, []);
   return (
     <div>

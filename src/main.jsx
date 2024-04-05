@@ -12,6 +12,7 @@ import OurShop from "./Pages/OurShop/OurShop";
 import Login from "./Pages/Login/Login";
 import AuthProvider from "./providers/AuthProvider";
 import Signup from "./Pages/Signup/Signup";
+import DashBoard from "./Pages/Dashboard/DashBoard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,15 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard />,
+    children: [
+      {
+        path: "cart",
       },
     ],
   },

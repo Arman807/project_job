@@ -3,12 +3,16 @@ import { NavLink } from "react-router-dom";
 
 import { IoMenuOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
-import useCart from "../../hooks/useCart";
+// import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
-  const [cart]=useCart();
+  // const [cart]=useCart();
+  // console.log(cart)
   const [drop,setDrop]=useState(false);
+  const [,data]=useCart();
+  console.log(data)
   const { user, logout } =useAuth();
   const handledrop=()=>{
     if(drop){
@@ -32,7 +36,7 @@ const Navbar = () => {
       </li>
       <li className="text-white pr-5">
         <NavLink
-          to="/messages"
+          to="/contact us"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }
@@ -40,16 +44,7 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
-      <li className="text-white pr-5">
-        <NavLink
-          to="/messages"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
+     
       <li className="text-white pr-5">
         <NavLink
           to="/menu"
@@ -71,12 +66,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className="pr-5">
-        <div className="flex">
+       <NavLink to="dashboard"> <div className="flex">
         <h3 className="text-white">
         <FaShoppingCart />
         </h3>
-        <sup className="text-white">{cart.length}</sup>
-        </div>
+        {data ? <sup className="text-white">{data.length}</sup> :""}
+        </div></NavLink>
       </li>
       <li className="text-white pr-5">
         {user ? (

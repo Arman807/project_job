@@ -5,16 +5,16 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const OurShopCart = ({ data }) => {
-    const [,refetch]=useCart();
-    const { axiosSecure } = useAxiosSecure();
-    const { _id, name, recipe, image, category, price } = data;
+    const [refetch,]=useCart();
+    const  axiosSecure  = useAxiosSecure();
+    const {  name, recipe, image, category, price } = data;
     const navigate = useNavigate();
     const { user } = useAuth();
 
-    const handleAddToCart = (_id) => {
+    const handleAddToCart = () => {
         if (user && user.email) {
             const cartItem = {
-                email: user.email,
+                email: user?.email,
                 name,
                 image,
                 price
@@ -30,7 +30,8 @@ const OurShopCart = ({ data }) => {
                             timer: 1500
                         });
                     }
-                    refetch();
+                    refetch()
+                    
                 })
                 .catch(error => {
                     console.error("Error adding item to cart:", error);
@@ -56,7 +57,7 @@ const OurShopCart = ({ data }) => {
                     </h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div className="card-actions">
-                        <button onClick={() => handleAddToCart(_id)} className="text-xl hover:bg-blue-500 mb-5 hover:text-white p-1 border-b-2 rounded-xl border-black">Add To Cart</button>
+                        <button onClick={handleAddToCart} className="text-xl hover:bg-blue-500 mb-5 hover:text-white p-1 border-b-2 rounded-xl border-black">Add To Cart</button>
                     </div>
                 </div>
             </div>
